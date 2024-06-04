@@ -1,0 +1,11 @@
+import json
+def process_json(file_path: str) -> Dict:
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+
+    processed_data = {
+        "name": data["name"],
+        "age": data["age"],
+        "email": data["email"].lower()
+    }
+    return processed_data
