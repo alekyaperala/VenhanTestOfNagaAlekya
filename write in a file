@@ -1,0 +1,4 @@
+def write_file(file_path: str, lines: List[str]) -> None:
+    with open(file_path, 'w') as file:
+        for line in lines:
+            file.write(f"{line}\n")
