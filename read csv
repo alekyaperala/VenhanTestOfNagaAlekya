@@ -1,0 +1,8 @@
+import csv
+def read_csv(file_path: str) -> List[Dict[str, str]]:
+    rows = []
+    with open(file_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            rows.append(row)
+    return rows
