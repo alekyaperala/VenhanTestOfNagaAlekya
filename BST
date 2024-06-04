@@ -1,0 +1,72 @@
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        if value < self.value:
+            if not self.left:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        elif value > self.value:
+            if not self.right:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
+
+    def find(self, value):
+        if value == self.value:
+            return True
+        elif value < self.value:
+            if not self.left:
+                return False
+            else:
+                return self.left.find(value)
+        elif value > self.value:
+            if not self.right:
+                return False
+            else:
+                return self.right.find(value)
+
+    def delete(self, value):
+        if value < self.value:
+            if not self.left:
+                return False
+            else:
+                self.left = self.left.delete(value)
+        elif value > self.value:
+            if not self.right:
+                return False
+            else:
+                self.right = self.right.delete(value)
+        else:
+            if not self.left and not self.right:
+                self = None
+                return True
+            elif not self.left:
+                self.value = self.right.value
+                self.right = self.right.delete(self.value)
+            elif not self.right:
+                self.value = self.left.value
+                self.left = self.left.delete(self.value)
+            else:
+                min_value = self.right.find_min()
+                self.value = min_value
+                self.right = self.right.delete(min_value)
+        return True
+
+    def find_min(self):
+        if not self.left:
+            return self.value
+        else:
+            return self.left.find_min()
+
+    def height(self):
+        if not self:
+            return -1
+        else:
+            left_height = self.left.height()
+            right_height = self.right.height()
+            return max(left_height, right_height) + 1
