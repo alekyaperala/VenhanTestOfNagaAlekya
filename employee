@@ -1,0 +1,14 @@
+class Employee:
+    num_employees = 0
+    def __init__(self, id: str, name: str):
+        self.id = id
+        self.name = name
+        self.validate_id(id)
+        Employee.num_employees += 1
+    @staticmethod
+    def validate_id(id: str):
+        if not id.isdigit():
+            raise ValueError("Employee ID must be a string of digits")
+    @classmethod
+    def get_num_employees(cls):
+        return cls.num_employees
