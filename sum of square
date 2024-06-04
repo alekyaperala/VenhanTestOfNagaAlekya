@@ -1,0 +1,2 @@
+def sum_of_squares(lst: List[int]) -> int:
+    return sum(i**2 for i in lst)
